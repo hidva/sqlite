@@ -716,6 +716,7 @@ static int sqlite3LockAndPrepare(
 ** If the function fails, zero is returned and pRc is filled with the
 ** error code.
 */
+#if 0
 static int shouldTreatAsIdentifier(
   sqlite3 *db,        /* Database handle. */
   const char *zToken, /* Pointer to start of token to be checked */
@@ -797,6 +798,7 @@ done1:
   if( zId!=zSpace ) sqlite3DbFree(db, zId);
   return bFound;
 }
+#endif
 
 /*
 ** Attempt to estimate the final output buffer size needed for the fully
@@ -972,12 +974,13 @@ char *sqlite3Normalize(
           z[j++] = ' ';
         }
         if( tokenType==TK_ID ){
-          int i2 = i, n2 = n, rc = SQLITE_OK;
+          int i2 = i, n2 = n  ;//, rc = SQLITE_OK;
           if( nParen>0 ){
             assert( nParen<nSql );
             sqlite3HashInsert(&inHash, zSql+nParen, 0);
           }
           if( flags&SQLITE_TOKEN_QUOTED ){ i2++; n2-=2; }
+#if 0
           if( shouldTreatAsIdentifier(db, zSql+i2, n2, &rc)==0 ){
             if( rc!=SQLITE_OK ) goto normalizeError;
             if( sqlite3_keyword_check(zSql+i2, n2)==0 ){
@@ -985,6 +988,7 @@ char *sqlite3Normalize(
               break;
             }
           }
+#endif
         }
         copyNormalizedToken(zSql, i, n, flags, z, &j);
         break;
