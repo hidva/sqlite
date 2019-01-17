@@ -1,3 +1,4 @@
-sqlite 源码, 仅是用作学习. 以下内容大概是学习总结笔记记录吧.
+这是个保留着 sqlite 完整提交历史的 mirror, 自 2000 年到现在. 从 [sqlite fossil 库](https://sqlite.org/src/doc/trunk/README.md) 同步而来. 今后同步周期不定, 可能一天, 也可能两天, 也可能就一直忘了. fossil 在这里是指一个 VCS 工具, 与 git 有点相似. 在按照 [fossil -> git](https://www.fossil-scm.org/index.html/doc/trunk/www/inout.wiki) 官方文档将 sqlite.fossil 库导出为 sqlite git 库可是出了不少幺蛾子啊! 遇到地第一个蛾子是 [mark not declared](https://www.mail-archive.com/fossil-users@lists.fossil-scm.org/msg24622.html), 原因大概和墙上时间不一致导致的, 然后看了半天帖子在[这里](https://www.mail-archive.com/fossil-users@lists.fossil-scm.org/msg24637.html)找到了解决方案. 然后很快就遇到了第二个蛾子 [multiple updates for ref not allowed](https://www.mail-archive.com/fossil-users@lists.fossil-scm.org/msg24660.html). 是因为 Fossil allows a given tag to refer to multiple commit IDs, 而 git 并不支持, 话说回来我也觉得一个 tag 引用着多个 commit id 是想干啥呢?! 最终通过这个[帖子](https://www.mail-archive.com/fossil-users@lists.fossil-scm.org/msg25498.html)的指导修改了 fossil 源码之后才得以解决.
 
-
+关于这里的分支管理, 我只用一个分支, 就是现在的 `zhanyistudy`, 只会在这个分支上进行改动. 其余的舞台全部交于 sqlite fossil 进行表演. 比如 sqlite fossil 使用 [trunk](https://github.com/hidva/sqlite-mirror/tree/trunk) 来作为 git master 使用等.
+ 
